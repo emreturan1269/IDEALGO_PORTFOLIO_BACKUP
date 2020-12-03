@@ -1,0 +1,31 @@
+
+
+var Veriler =  Sistem.GrafikFiyatSec("Kapanis");
+
+var DX_MINUS = Sistem.DirectionalIndicatorMinus(14);
+var DX_PLUS= Sistem.DirectionalIndicatorPlus(14);
+var FX_SNP = Sistem.FxSniper(3, 2);
+
+var SonYon = " ";
+
+//condition
+
+for  ( int i=0; i<Sistem.BarSayisi; i++)
+{
+  if ( DX_PLUS[i] > DX_MINUS[i]  && FX_SNP  [i] > 0 && SonYon != "A" )
+{
+Sistem.Yon[i] = "A" ;
+SonYon = "A" ;
+}
+  else if (DX_PLUS[i] < DX_MINUS[i] && FX_SNP  [i] > 0 && SonYon != "S")
+{
+  Sistem.Yon[i] = "S" ; 
+  SonYon = "S";
+}
+}
+     Sistem.Cizgiler[0].Deger = DX_PLUS;
+   Sistem.Cizgiler[1].Deger= DX_MINUS;
+ Sistem.Cizgiler[2].Deger = FX_SNP;
+  
+
+  
